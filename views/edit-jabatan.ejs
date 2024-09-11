@@ -1,0 +1,29 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md6">
+            <h2>Form Ubah Data</h2>
+            <% if (typeof errors != 'undefined') { %>
+             <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li> 
+                <% }) %>
+                </ul>
+             </div>
+            <% } %>
+
+             <!-- form post data contact -->
+              <!-- process perubahan data -->
+            <form method="POST" action="/jabatan?_method=PUT">
+              <input type="hidden" name="_id" value="<%= jabatan._id %>">
+              <div class="mb-3">
+                  <label for="nama_jabatan" class="form-label">jabatan</label>
+                  <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan" value="<%= jabatan.nama_jabatan%>" required > 
+                </div>
+               
+                <button type="submit" class="btn btn-outline-primary ml-auto"><i class="bi bi-save"></i> Simpan</button>
+                <a href="/jabatan" class="btn btn-outline-warning ml-auto">&laquo; Kembali</a>
+              </form>
+        </div>
+    </div>
+</div>

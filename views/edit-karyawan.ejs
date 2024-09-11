@@ -1,0 +1,69 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md6">
+            <h2>Form Ubah Data</h2>
+            <% if (typeof errors != 'undefined') { %>
+             <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li> 
+                <% }) %>
+                </ul>
+             </div>
+            <% } %>
+  
+             <!-- form post data contact -->
+              <!-- process perubahan data -->
+              <form method="POST" action="/karyawan?_method=PUT">
+                <input type="hidden" name="_id" value="<%= karyawan._id %>">
+                <input type="hidden" name="oldNIK" value="<%= karyawan.oldNIK || karyawan.nik%>">
+                <input type="hidden" name="oldNama" value="<%= karyawan.oldNama || karyawan.nama%>">
+                <input type="hidden" name="oldEmail" value="<%= karyawan.oldEmail || karyawan.email%>">
+                
+                <div class="mb-3">
+                    <label for="nik" class="form-label">NIK</label>
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="7" required value="<%= karyawan.nik%>" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" required value="<%= karyawan.nama%>">
+                </div>
+                <div class="mb-3">
+                    <label for="nama_jabatan" class="form-label">Jabatan</label>
+                    <select class="form-control" id="nama_jabatan" name="nama_jabatan" required>
+                        <% jabatanList.forEach(jabatan => { %>
+                            <option value="<%= jabatan._id %>" 
+                                <%= karyawan.jabatan && String(karyawan.jabatan._id || karyawan.jabatan) === String(jabatan._id) ? 'selected' : '' %>>
+                                <%= jabatan.nama_jabatan %>
+                            </option>
+                        <% }) %>
+                    </select>
+                    
+                    
+                  
+                  
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= karyawan.email%>">
+                </div>
+                <button type="submit" class="btn btn-outline-primary ml-auto"><i class="bi bi-save"></i> Simpan</button>
+                <a href="/karyawan" class="btn btn-outline-warning ml-auto">&laquo; Kembali</a>
+            </form>
+            
+        </div>
+    </div>
+  </div>
+  <script>
+      document.getElementById('nik').addEventListener('input', function (e) {
+          if (this.value.length > 7) {
+              this.value = this.value.slice(0, 7);
+          }
+      });
+  </script>
+  <script>
+      document.getElementById('nama').addEventListener('input', function (e) {
+          this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+      });
+  </script>
+  

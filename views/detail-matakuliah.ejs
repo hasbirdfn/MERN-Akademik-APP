@@ -1,0 +1,27 @@
+<div class="container-mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Contact</h2>
+          
+          <!-- jika params diisi ngasal, maka muncu alert dibawah -->
+          <% if (!matakuliah) { %>
+            <div class="alert alert-danger fw-bold" role="alert">
+             Data matakuliah tidak ada<br/>
+              <a href="/matakuliah" class="alert-link fw-normal">&laquo; Kembali ke Daftar matakuliah</a>.
+            </div>
+          <% } else { %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Mata kuliah :<%= matakuliah.matkul  %></h5>
+                  <a href="/matakuliah/edit/<%= matakuliah.matkul %>" class="btn btn-primary badge">Ubah</a>
+                  <form method="POST" action="/matakuliah?_method=DELETE" class="d-inline">
+                   <input type="hidden" name="matkul" value="<%= matakuliah.matkul %>">
+                    <button type="submit" class="btn btn-danger badge" onclick="return confirm('Yakin?')">Hapus</button>
+                  </form>
+                  <a href="/matakuliah" class="card-link d-block mt-3">&laquo;Kembali Ke Daftar matakuliah</a>
+                </div>
+              </div>
+        </div>
+        <% } %>
+    </div>
+</div>

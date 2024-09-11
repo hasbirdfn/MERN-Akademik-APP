@@ -1,0 +1,30 @@
+<div class="container-mt-5">
+  <div class="row">
+      <div class="col-md-8">
+          <h2>Detail Dosen</h2>
+        
+        <!-- jika params diisi ngasal, maka muncu alert dibawah -->
+        <% if (!dosen) { %>
+          <div class="alert alert-danger fw-bold" role="alert">
+           Data dosen tidak ada<br/>
+            <a href="/dosen" class="alert-link fw-normal">&laquo; Kembali ke Daftar Dosen</a>.
+          </div>
+        <% } else { %>
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">NIP :<%= dosen.nip  %></h5>
+                <h5 class="card-title">Nama :<%= dosen.nama  %></h5>
+                <h5 class="card-title">Matkul :<%= dosen.matkul ? dosen.matkul.matkul : 'Tidak ada mata kuliah' %></h5>
+                <p class="card-text">Email : <%= dosen.email  %></p>
+                <a href="/dosen/edit/<%= dosen.nama %>" class="btn btn-primary badge">Ubah</a>
+                <form method="POST" action="/dosen?_method=DELETE" class="d-inline">
+                 <input type="hidden" name="nama" value="<%= dosen.nama %>">
+                  <button type="submit" class="btn btn-danger badge" onclick="return confirm('Yakin?')">Hapus</button>
+                </form>
+                <a href="/dosen" class="card-link d-block mt-3">&laquo;Kembali Ke Daftar Dosen</a>
+              </div>
+            </div>
+      </div>
+      <% } %>
+  </div>
+</div>

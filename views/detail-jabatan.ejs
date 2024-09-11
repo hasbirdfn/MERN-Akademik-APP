@@ -1,0 +1,27 @@
+<div class="container-mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Jabatan</h2>
+          
+          <!-- jika params diisi ngasal, maka muncu alert dibawah -->
+          <% if (!jabatan) { %>
+            <div class="alert alert-danger fw-bold" role="alert">
+             Data jabatan tidak ada<br/>
+              <a href="/jabatan" class="alert-link fw-normal">&laquo; Kembali ke Daftar jabatan</a>.
+            </div>
+          <% } else { %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Jabatan :<%= jabatan.nama_jabatan %></h5>
+                  <a href="/jabatan/edit/<%= jabatan.nama_jabatan %>" class="btn btn-primary badge">Ubah</a>
+                  <form method="POST" action="/jabatan?_method=DELETE" class="d-inline">
+                   <input type="hidden" name="nama_jabatan" value="<%= jabatan.nama_jabatan %>">
+                    <button type="submit" class="btn btn-danger badge" onclick="return confirm('Yakin?')">Hapus</button>
+                  </form>
+                  <a href="/jabatan" class="card-link d-block mt-3">&laquo;Kembali Ke Daftar matakuliah</a>
+                </div>
+              </div>
+        </div>
+        <% } %>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Form Tambah Data</h2>
+        <% if (typeof errors != 'undefined') { %>
+          <div class="alert alert-danger" role="alert">
+            <ul>
+              <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+  
+        <!-- Form post data mata kuliah -->
+        <form method="POST" action="/jabatan">
+          <div class="mb-3">
+            <label for="nama_jabatan" class="form-label">Jabatan</label>
+            <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan" required>
+          </div>
+          <button type="submit" class="btn btn-outline-primary ml-auto"><i class="bi bi-save"></i> Simpan</button>
+          <a href="/jabatan" class="btn btn-outline-warning ml-auto">&laquo; Kembali</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  

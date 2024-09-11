@@ -1,0 +1,45 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md6">
+            <h2>Form Ubah Data</h2>
+            <% if (typeof errors != 'undefined') { %>
+             <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li> 
+                <% }) %>
+                </ul>
+             </div>
+            <% } %>
+
+             <!-- form post data contact -->
+              <!-- process perubahan data -->
+            <form method="POST" action="/contact?_method=PUT">
+              <input type="hidden" name="_id" value="<%= contact._id %>">
+              <input type="hidden" name="oldNama" value="<%= contact.oldNama || contact.nama%>">
+              <div class="mb-3">
+                  <label for="nama" class="form-label">Nama</label>
+                  <input type="text" class="form-control" id="nama" name="nama" required value="<%= contact.nama%>">
+                </div>
+                <div class="mb-3">
+                  <label for="lulusan" class="form-label">Lulusan</label>
+                  <input type="text" class="form-control" id="lulusan" name="lulusan" required value="<%= contact.lulusan%>">
+                </div>
+                <div class="mb-3">
+                  <label for="nohp" class="form-label">No Handphone</label>
+                  <input type="text" class="form-control" id="nohp" name="nohp" required value="<%= contact.nohp%>">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required value="<%= contact.email%>">
+                </div>
+                <div class="mb-3">
+                  <label for="alamat" class="form-label">Alamat</label>
+                  <input type="text" class="form-control" id="alamat" name="alamat" required value="<%= contact.alamat%>">
+                </div>
+                <button type="submit" class="btn btn-outline-primary ml-auto"><i class="bi bi-save"></i> Simpan</button>
+                <a href="/contact" class="btn btn-outline-warning ml-auto">&laquo; Kembali</a>
+              </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container-mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Contact</h2>
+          
+          <!-- jika params diisi ngasal, maka muncu alert dibawah -->
+          <% if (!contact) { %>
+            <div class="alert alert-danger fw-bold" role="alert">
+             Data contact tidak ada<br/>
+              <a href="/contact" class="alert-link fw-normal">&laquo; Kembali ke Daftar Contact</a>.
+            </div>
+          <% } else { %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Nama :<%= contact.nama  %></h5>
+                  <h5 class="card-title">Lulusan :<%= contact.lulusan  %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted">No HP :<%= contact.nohp  %></h6>
+                  <p class="card-text">Email : <%= contact.email  %></p>
+                  <p class="card-text">Alamat :<%= contact.alamat  %></p>
+                  <a href="/contact/edit/<%= contact.nama %>" class="btn btn-primary badge">Ubah</a>
+                  <form method="POST" action="/contact?_method=DELETE" class="d-inline">
+                   <input type="hidden" name="nama" value="<%= contact.nama %>">
+                    <button type="submit" class="btn btn-danger badge" onclick="return confirm('Yakin?')">Hapus</button>
+                  </form>
+                  <a href="/contact" class="card-link d-block mt-3">&laquo;Kembali Ke Daftar Contact</a>
+                </div>
+              </div>
+        </div>
+        <% } %>
+    </div>
+</div>

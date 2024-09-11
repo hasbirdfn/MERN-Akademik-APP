@@ -1,0 +1,63 @@
+<div class="container mt-3">
+  <div class="row">
+      <div class="col-md6">
+          <h2>Form Ubah Data</h2>
+          <% if (typeof errors != 'undefined') { %>
+           <div class="alert alert-danger" role="alert">
+              <ul>
+                  <% errors.forEach(error => { %>
+                  <li><%= error.msg %></li> 
+              <% }) %>
+              </ul>
+           </div>
+          <% } %>
+
+           <!-- form post data contact -->
+            <!-- process perubahan data -->
+            <form method="POST" action="/dosen?_method=PUT">
+              <input type="hidden" name="_id" value="<%= dosen._id %>">
+              <input type="hidden" name="oldNIP" value="<%= dosen.oldNIP || dosen.nip%>">
+              <input type="hidden" name="oldNama" value="<%= dosen.oldNama || dosen.nama%>">
+              <input type="hidden" name="oldEmail" value="<%= dosen.oldEmail || dosen.email%>">
+              
+              <div class="mb-3">
+                  <label for="nip" class="form-label">NIP</label>
+                  <input type="text" class="form-control" id="nip" name="nip" maxlength="7" required value="<%= dosen.nip%>" readonly>
+              </div>
+              <div class="mb-3">
+                  <label for="nama" class="form-label">Nama</label>
+                  <input type="text" class="form-control" id="nama" name="nama" required value="<%= dosen.nama%>">
+              </div>
+              <div class="mb-3">
+                  <label for="matkul" class="form-label">Mata Kuliah</label>
+                  <select class="form-control" id="matkul" name="matkul" required>
+                    <% matkulList.forEach(matkul => { %>
+                        <option value="<%= matkul._id %>" <%= String(dosen.matkul._id || dosen.matkul) === String(matkul._id) ? 'selected' : '' %>><%= matkul.matkul %></option>
+                    <% }) %>
+                </select>
+                
+                
+              </div>
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" value="<%= dosen.email%>">
+              </div>
+              <button type="submit" class="btn btn-outline-primary ml-auto"><i class="bi bi-save"></i> Simpan</button>
+              <a href="/dosen" class="btn btn-outline-warning ml-auto">&laquo; Kembali</a>
+          </form>
+          
+      </div>
+  </div>
+</div>
+<script>
+    document.getElementById('nip').addEventListener('input', function (e) {
+        if (this.value.length > 7) {
+            this.value = this.value.slice(0, 7);
+        }
+    });
+</script>
+<script>
+    document.getElementById('nama').addEventListener('input', function (e) {
+        this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+    });
+</script>
